@@ -27,7 +27,7 @@ public class PostService {
 
     @Transactional
     public Post getOne(Long id) {
-        Post post =  postRepository.findById(id).orElseThrow(
+        Post post = postRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("Post does not exist")
         );
         return post;
@@ -61,7 +61,7 @@ public class PostService {
     }
 
     @Transactional
-    public Long delete(Long id){
+    public Long delete(Long id) {
         postRepository.deleteById(id);
         return id;
     }
