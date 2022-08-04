@@ -1,9 +1,9 @@
 package com.sparta.assignment.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sparta.assignment.dto.PostRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 

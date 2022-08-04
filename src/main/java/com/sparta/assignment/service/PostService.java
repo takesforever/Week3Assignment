@@ -1,16 +1,11 @@
 package com.sparta.assignment.service;
 
 import com.sparta.assignment.domain.Post;
-import com.sparta.assignment.domain.PostRepository;
-import com.sparta.assignment.domain.PostRequestDto;
+import com.sparta.assignment.repository.PostRepository;
+import com.sparta.assignment.dto.PostRequestDto;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.swing.*;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -27,9 +22,8 @@ public class PostService {
 
     @Transactional
     public Post getOne(Long id) {
-        Post post = postRepository.findById(id).orElseThrow(
-                () -> new NullPointerException("Post does not exist")
-        );
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new NullPointerException("Post does not exist"));
         return post;
     }
 
@@ -41,9 +35,8 @@ public class PostService {
 
     @Transactional
     public Long matchPw(Long id, PostRequestDto requestDto) {
-        Post post = postRepository.findById(id).orElseThrow(
-                () -> new NullPointerException("포스트가 없습니다.")
-        );
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new NullPointerException("포스트가 없습니다."));
         if (post.getPassword().equals(requestDto.getPassword())) {
             return id;
         } else {
@@ -53,9 +46,8 @@ public class PostService {
 
     @Transactional
     public Post updatePost(Long id, PostRequestDto requestDto) {
-        Post post = postRepository.findById(id).orElseThrow(
-                () -> new NullPointerException("포스트가 없습니다.")
-        );
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new NullPointerException("포스트가 없습니다."));
         post.update(requestDto);
         return post;
     }
